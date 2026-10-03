@@ -8,7 +8,7 @@ import { useCart } from "@/components/cart-provider";
 import { placeOrder } from "@/app/checkout/actions";
 
 export function CheckoutForm() {
-  const { items, totalMinor, clear } = useCart();
+  const { items, totalMinor, clear, cartError } = useCart();
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState<string | null>(null);
   const [orderId, setOrderId] = useState<string | null>(null);
@@ -53,6 +53,7 @@ export function CheckoutForm() {
         <h2>Thanks for choosing Daisy Foodz.</h2>
         <p>Your order reference is <strong>{orderId}</strong>. We’ll deliver it to the address you provided.</p>
         {message && <p className="email-warning">{message}</p>}
+        {cartError && <p className="form-error" role="alert">{cartError}</p>}
       </section>
     );
   }
@@ -102,6 +103,7 @@ export function CheckoutForm() {
           </label>
         </div>
         {message && <p className="form-error" role="alert">{message}</p>}
+        {cartError && <p className="form-error" role="alert">{cartError}</p>}
         <button className="button button-dark button-wide" disabled={isPending || items.length === 0} type="submit">
           {isPending ? "Placing order…" : "Place order"}
         </button>

@@ -5,11 +5,12 @@ import { formatPrice } from "@/lib/money";
 import { useCart } from "@/components/cart-provider";
 
 export function CartView() {
-  const { items, totalMinor, setQuantity } = useCart();
+  const { items, totalMinor, setQuantity, cartError } = useCart();
 
   if (items.length === 0) {
     return (
       <div className="empty-state">
+        {cartError && <p className="form-error" role="alert">{cartError}</p>}
         <span className="empty-icon">🧺</span>
         <h2>Your basket is waiting</h2>
         <p>Pick something delicious from our kitchen.</p>
@@ -21,6 +22,7 @@ export function CartView() {
   return (
     <div className="cart-layout">
       <div className="cart-items">
+        {cartError && <p className="form-error" role="alert">{cartError}</p>}
         {items.map(({ product, quantity }) => (
           <article className="cart-line" key={product.id}>
             <div className="cart-item-icon" aria-hidden="true">{product.emoji}</div>
