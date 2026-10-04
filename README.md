@@ -37,6 +37,17 @@ Never expose a Google OAuth client secret, Mailgun API key, or Supabase service-
    - Add, increment, decrement, and remove a product on the phone; confirm the website cart and count update immediately.
    - Sign out on either client and verify another account does not see the previous account's cart.
 
+### Build a downloadable Android APK
+
+The APK build uses Expo Application Services (EAS); Expo Go itself does not produce an installable APK.
+
+1. Create or sign in to an Expo account, then from `mobile/` run `npx eas-cli@latest login` and `npx eas-cli@latest init` to link this app to an EAS project.
+2. Set a unique, permanent `android.package` application ID in `mobile/app.json` before the first release.
+3. Add `EXPO_PUBLIC_SUPABASE_URL` and `EXPO_PUBLIC_SUPABASE_ANON_KEY` to the linked EAS project's `production` environment. Use the same Supabase project and public anon/publishable key as the website. Do not add service-role keys or OAuth client secrets.
+4. Build the APK from `mobile/` with `npx eas-cli@latest build --platform android --profile apk`. When the build completes, download the APK from the EAS build page and upload it to Google Drive or another accessible file-sharing service.
+
+For the demo, use the deployed website (or a website URL reachable from the phone), create a new account through Google sign-in, and use that same Google account in the mobile app. The current app supports Google OAuth rather than email/password registration. Keep one continuous screen recording while showing the web cart update, the app cart update, and the return web cart update.
+
 ## Mailgun order confirmations
 
 Set the following server-side variables in `.env.local`:
