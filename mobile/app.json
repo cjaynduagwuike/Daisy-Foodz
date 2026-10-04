@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Daisy Foodz",
-    "slug": "daisy-foodz",
+    "slug": "daisy-foodz-app",
     "version": "1.0.0",
     "scheme": "daisyfoodz",
     "orientation": "portrait",
@@ -11,6 +11,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.github.cjaynduagwuike.daisyfoodz",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -25,6 +26,12 @@
     "plugins": [
       "expo-secure-store",
       "expo-web-browser"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "727b2001-c9d0-45e4-a53c-4a3e2f0cc942"
+      }
+    },
+    "owner": "cjaynduagwuikes-team"
   }
 }
